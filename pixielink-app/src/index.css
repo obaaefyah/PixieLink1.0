@@ -1,0 +1,39 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.url-form {
+  margin-bottom: 20px;
+}
+
+.signup, .login {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.signup form, .login form {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup input, .login input {
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.signup button, .login button {
+  padding: 10px;
+}
