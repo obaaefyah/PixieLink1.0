@@ -1,29 +1,31 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({setAuthenticated}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [error, setError] = useState(''); 
+
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
     const users = JSON.parse(localStorage.getItem('users')) || [];
     const existingUser = users.find((user) => user.email === email && user.password === password);
+    
     if (!existingUser) {
-      setError('Invalid email or password');
-      return;
+      setError('Invalid email or password'); 
+    } else {
+      localStorage.setItem('currentUser', JSON.stringify(existingUser));
+      setAuthenticated(true)
+      navigate('/shortener');
     }
-    localStorage.setItem('currentUser', JSON.stringify(existingUser));
-    // Redirect to URLForm component after successful login
-    navigate('/url-form'); // Replace '/url-form' with your actual route path
   };
 
   return (
     <div className="login">
       <h1>Login</h1>
-      {error && <p>{error}</p>}
+      {error && <p>{error}</p>} {/* Display error message if there is an error */}
       <form onSubmit={handleLogin}>
         <input
           type="email"

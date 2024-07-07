@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './NavBar.css'; // Ensure CSS file is imported
+import './NavBar.css'; 
 
-const NavBar = ({ authenticated, handleLogout }) => {
+
+const NavBar = ({ authenticated}) => {
   const brandStyle = {
     color: 'orange',
     fontSize: '1.5rem',
@@ -13,22 +14,21 @@ const NavBar = ({ authenticated, handleLogout }) => {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <span className="navbar-brand" style={brandStyle}>PixieLink</span> {/* Applied inline styles */}
+      <span className="navbar-brand" style={brandStyle}>PixieLink</span> 
       <div className="collapse navbar-collapse">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item">
             <Link className="nav-link" to="/">Home</Link>
           </li>
+          {!authenticated && (
           <li className="nav-item">
             <Link className="nav-link" to="/signup">Sign Up</Link>
           </li>
+          )}
+          {!authenticated && (
           <li className="nav-item">
             <Link className="nav-link" to="/login">Login</Link>
           </li>
-          {authenticated && (
-            <li className="nav-item">
-              <Link className="nav-link" to="/" onClick={handleLogout}>Logout</Link>
-            </li>
           )}
         </ul>
       </div>
