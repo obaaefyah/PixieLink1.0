@@ -1,6 +1,7 @@
 .footer {
-  padding: 20px 0;
   background-color: #f8f9fa;
+  position: relative;
+  bottom: 0;
 }
 
 .footer .app-name {

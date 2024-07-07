@@ -1,0 +1,132 @@
+/* Shortener.css */
+
+/* General container styling */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .input-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .input-group .form-control {
+    height: 50px;
+    font-size: 1.1rem;
+  }
+  
+  .input-group .btn {
+    font-size: 1.1rem;
+    padding: 0.75rem 1.25rem;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .text-danger {
+    color: #dc3545;
+  }
+  
+  .text-success {
+    color: #28a745;
+  }
+  
+  /* Styles for the shortened URL */
+  .shortened-url {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+  
+  .shortened-url a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .shortened-url a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Button styles */
+  button {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  button .ri {
+    margin-right: 0.5rem;
+  }
+  
+  .card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 1.5rem;
+  }
+  
+  .card-body {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  .mt-5 {
+    margin-top: 3rem;
+  }
+  
+  .mb-4 {
+    margin-bottom: 1.5rem;
+  }
+  
+  .ml-2 {
+    margin-left: 0.5rem;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      padding: 10px;
+    }
+  
+    h1 {
+      font-size: 2rem;
+    }
+  
+    .input-group .form-control,
+    .input-group .btn {
+      font-size: 1rem;
+      height: 45px;
+      padding: 0.5rem 1rem;
+    }
+  
+    button {
+      font-size: 0.9rem;
+      padding: 0.4rem 0.8rem;
+    }
+  
+    .shortened-url {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+  
