@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import QRCode from 'qrcode.react'; 
-import './Shortener.css'
+import QRCode from 'qrcode.react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCopy, faShareAlt } from '@fortawesome/free-solid-svg-icons';
+import './Shortener.css';
 
 const Shortener = () => {
   const [originalUrl, setOriginalUrl] = useState('');
   const [shortenedUrl, setShortenedUrl] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [showQRCode, setShowQRCode] = useState(false);
+  const [copySuccess, setCopySuccess] = useState('');
+  const [shareError, setShareError] = useState('');
 
   useEffect(() => {
     setShowQRCode(false);
-  }, [shortenedUrl]); 
+    setCopySuccess('');
+    setShareError('');
+  }, [shortenedUrl]);
 
   const shortenUrl = async () => {
     try {
@@ -21,6 +27,30 @@ const Shortener = () => {
     } catch (error) {
       setShortenedUrl('');
       setErrorMessage('Failed to shorten URL. Please try again later.');
+    }
+  };
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(shortenedUrl).then(() => {
+      setCopySuccess('Copied to clipboard!');
+      setTimeout(() => setCopySuccess(''), 3000); 
+    }, (err) => {
+      setCopySuccess('Failed to copy!');
+    });
+  };
+
+  const shareUrl = async () => {
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: 'Shortened URL',
+          url: shortenedUrl
+        });
+      } else {
+        setShareError('Web Share API is not supported in your browser.');
+      }
+    } catch (error) {
+      setShareError('Failed to share URL.');
     }
   };
 
@@ -41,19 +71,27 @@ const Shortener = () => {
           </div>
           {errorMessage && <p className="text-danger">{errorMessage}</p>}
           {shortenedUrl && (
-            <div>
-              <p>
+            <div className="d-flex align-items-center">
+              <p className="mb-0">
                 Shortened URL: <a href={shortenedUrl} target="_blank" rel="noopener noreferrer">{shortenedUrl}</a>
               </p>
+              <button className="btn btn-secondary ms-3" onClick={copyToClipboard}>
+                <FontAwesomeIcon icon={faCopy} /> Copy
+              </button>
+              {copySuccess && <span className="text-success ms-2">{copySuccess}</span>}
+              <button className="btn btn-secondary ms-2" onClick={shareUrl}>
+                <FontAwesomeIcon icon={faShareAlt} /> Share
+              </button>
+              {shareError && <span className="text-danger ms-2">{shareError}</span>}
             </div>
           )}
-          {showQRCode && shortenedUrl &&
+          {showQRCode && shortenedUrl && (
             <div className="card mt-3">
               <div className="card-body">
                 <QRCode value={shortenedUrl} />
               </div>
             </div>
-          }
+          )}
           {shortenedUrl && (
             <button className="btn btn-info mt-3" onClick={() => setShowQRCode(!showQRCode)}>
               {showQRCode ? 'Hide QR Code' : 'Show QR Code'}

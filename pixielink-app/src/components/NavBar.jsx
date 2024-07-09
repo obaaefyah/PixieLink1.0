@@ -8,7 +8,7 @@ const NavBar = ({ authenticated}) => {
     color: 'orange',
     fontSize: '1.5rem',
     fontWeight: 700,
-    fontFamily: "'Poppins', sans-serif",
+    fontFamily: 'Poppins',
     textShadow: '1px 1px 2px rgba(0, 0, 0, 0.2)',
   };
 
